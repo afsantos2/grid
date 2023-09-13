@@ -1,8 +1,5 @@
-const produtos = [
-  {id: 1, img_src: '/' ,nome: 'Mouse', preco: 'R$20,00' },
-  {id: 2, img_src: '/' ,nome: 'Teclado', preco: 'R$50,00' },
-  {id: 3, img_src: '/' ,nome: 'Fone Bluetooth', preco: 'R$100,00'},
-];
+import { produtos } from "./Data"
+import Button from "./Button"
 
 export default function Produtos() {
   return (
@@ -14,6 +11,7 @@ export default function Produtos() {
           </div>
           <span className="nome">{produto.nome}</span>
           <span className="preco">{produto.preco}</span>
+          <Button label="Adicionar ao carrinho" classe="add-carr-btn" />
         </div>
       </li>    
     )

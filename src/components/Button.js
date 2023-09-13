@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function Button({ label }) {
+export default function Button({ label, classe }) {
   return (
-    <button>{label}</button>
+    <button className={classe}>{label}</button>
   )
 }
 

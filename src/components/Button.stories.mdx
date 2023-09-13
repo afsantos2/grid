@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs'
 import Button from './Button'
+import '../App.css'
  
 <Meta title="Components/Button" Components={Button}/>
 
@@ -15,6 +16,6 @@ import Button from './Button'
       label: 'Botão Primário',
     }}
   >
-    {(args) => <Button {...args} />}
+    {(args) => <Button {...args} classe="add-carr-btn" />}
   </Story>
 </Canvas>
