@@ -1,24 +1,40 @@
 import Header from './components/Header';
 import SearchInput from './components/SearchInput';
+import Pagination from './components/Pagination';
+import qs from 'qs';
 import { useEffect, useState } from 'react';
 import './App.css';
 
 const api = 'https://kitsu.io/api/edge/'
+const LIMIT = 12
 
 function App() {
   const [info, setInfo] = useState({})
   const [text, setText] = useState('')
+  const [offset, setOffset] = useState(0)
   
   useEffect(() => {
-    setInfo({})
+    // setInfo({})
+
+    const query = {
+      page: {
+        limit: LIMIT,
+        offset,
+      }
+    }
+
     if(text) {
-      fetch(`${api}anime?filter[text]=${text}&page[limit]=16`)
-        .then((response) => response.json())
-        .then((response) => {
-          setInfo(response)
-        })
-    }  
-  }, [text])
+      query.filter = {
+        text,
+      }
+    }      
+
+    fetch(`${api}anime?${qs.stringify(query)}`)
+      .then((response) => response.json())
+      .then((response) => {
+        setInfo(response)
+      })     
+  }, [text, offset])
 
   return (
     <div className="App">
@@ -31,7 +47,7 @@ function App() {
 
         {/* loadind button */}
         {text && !info.data && (
-          <div className="h-12 border-4 border-solid rounded-full loading-w-12 border-r-black animate-spin"></div>
+          <div className="w-12 h-12 border-4 border-solid rounded-full border-r-black animate-spin"></div>
         )}
         
         {info.data && (
@@ -46,6 +62,14 @@ function App() {
               </li>
             ))}
           </ul>
+        )}
+        {info.meta && (
+          <Pagination 
+            limit={LIMIT}
+            total={info.meta.count}
+            offset={offset}
+            setOffset={setOffset}
+          />
         )}
       </main>
     </div>
