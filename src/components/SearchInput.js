@@ -11,13 +11,15 @@ const SearchInput = ({ value, onChange }) => {
   }
 
   return (
-    <input 
-      type="search" 
-      value={displayValue} 
-      onChange={handleChange}
-      className="ml-2 border-2 border-black border-solid outline-none"
-      placeholder="Pesquisar anime"
-    />
+    <div className="flex justify-center w-full">
+      <input 
+        type="search" 
+        value={displayValue} 
+        onChange={handleChange}
+        className="h-10 pl-2 my-4 transition-colors duration-200 border-2 border-solid rounded-lg outline-none w-60 md:w-80 lg:w-96 hover:border-primary-700 focus:border-primary-800"
+        placeholder="Pesquisar anime"
+      />
+    </div>
   )
 }
 
