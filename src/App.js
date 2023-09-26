@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <main>
+      <main className="max-w-screen-xl mx-auto">
         <SearchInput 
           value={text}
           onChange={(search) => setText(search)}
